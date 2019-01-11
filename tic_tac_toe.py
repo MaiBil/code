@@ -1,4 +1,9 @@
+"""
+This is the first Milestone Proyect of Udemy's "Python Bootcamp"
+"""
+
 import random
+
 
 def display_board(board):
     print('\n'*35)
@@ -15,11 +20,11 @@ def player_input():
     marker = ''
     while not (marker == 'X' or marker == 'O'):
         marker = input("Player 1 choose 'X' or 'O': ").upper()
-        
+
     if marker.upper() == 'X':
-        return ('X','O')
+        return ('X', 'O')
     else:
-        return ('O','X')
+        return ('O', 'X')
 
 
 def place_marker(board, marker, position):
@@ -27,18 +32,18 @@ def place_marker(board, marker, position):
 
 
 def win_check(board, mark):
-    return ((board[7] == mark and board[8] == mark and board[9] == mark) or # across the top
-    (board[4] == mark and board[5] == mark and board[6] == mark) or # across the middle
-    (board[1] == mark and board[2] == mark and board[3] == mark) or # across the bottom
-    (board[7] == mark and board[4] == mark and board[1] == mark) or # down the middle
-    (board[8] == mark and board[5] == mark and board[2] == mark) or # down the middle
-    (board[9] == mark and board[6] == mark and board[3] == mark) or # down the right side
-    (board[7] == mark and board[5] == mark and board[3] == mark) or # diagonal
-    (board[9] == mark and board[5] == mark and board[1] == mark)) # diagonal
+    return ((board[7] == mark and board[8] == mark and board[9] == mark) or  # across the top
+            (board[4] == mark and board[5] == mark and board[6] == mark) or  # across the middle
+            (board[1] == mark and board[2] == mark and board[3] == mark) or  # across the bottom
+            (board[7] == mark and board[4] == mark and board[1] == mark) or  # down the middle
+            (board[8] == mark and board[5] == mark and board[2] == mark) or  # down the middle
+            (board[9] == mark and board[6] == mark and board[3] == mark) or  # down the right side
+            (board[7] == mark and board[5] == mark and board[3] == mark) or  # diagonal
+            (board[9] == mark and board[5] == mark and board[1] == mark))  # diagonal
 
 
 def choose_first():
-    first = random.randint(0,1)
+    first = random.randint(0, 1)
     if first == 0:
         return 'Player 1'
     elif first == 1:
@@ -50,8 +55,8 @@ def space_check(board, position):
 
 
 def full_board_check(board):
-    for i in range(1,10):
-        if space_check(board,i):
+    for i in range(1, 10):
+        if space_check(board, i):
             return False
     return True
 
@@ -59,14 +64,15 @@ def full_board_check(board):
 def player_choice(board):
     position = 0
 
-    while position not in [1,2,3,4,5,6,7,8,9] or not space_check(board,position):
+    while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9] or not space_check(board, position):
         position = int(input('Choose a position from 1 to 9: '))
 
     return position
 
 
 def replay():
-    return input('Do you want to play again? Enter Yes or No: ').lower().startswith('y')
+    return input('Do you want to play again? Enter Yes or No: \
+                 ').lower().startswith('y')
 
 
 print('Welcome to Tic Tac Toe!')
@@ -84,9 +90,8 @@ while True:
     else:
         game_on = False
 
-    
     while game_on:
-    
+
         if turn == 'Player 1':
             display_board(theBoard)
             position = player_choice(theBoard)
